@@ -1,6 +1,6 @@
 #include <iostream>
 #include <conio.h>
-#include <windows.h> // For Sleep function in Windows
+#include <windows.h> 
 
 using namespace std;
 
@@ -10,7 +10,7 @@ const int height = 20;
 int x, y, fruitX, fruitY, score;
 enum eDirection { STOP = 0, LEFT, RIGHT, UP, DOWN };
 eDirection dir;
-int speedDelay = 100; // Speed delay in milliseconds
+int speedDelay = 100; 
 
 void Setup() {
     gameOver = false;
@@ -22,8 +22,12 @@ void Setup() {
     score = 0;
 }
 
+int getScore(){
+    return score;
+}
 void Draw() {
-    system("cls"); // system("clear") for Linux
+
+    system("cls"); 
     for (int i = 0; i < width + 2; i++)
         cout << "#";
     cout << endl;
@@ -31,17 +35,17 @@ void Draw() {
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             if (j == 0)
-                cout << "#"; // border on the left side
+                cout << "#"; 
 
             if (i == y && j == x)
-                cout << "O"; // snake's head
+                cout << "O"; 
             else if (i == fruitY && j == fruitX)
-                cout << "F"; // fruit
+                cout << "F"; 
             else
-                cout << " "; // empty space
+                cout << " "; 
 
             if (j == width - 1)
-                cout << "#"; // border on the right side
+                cout << "#"; 
         }
         cout << endl;
     }
@@ -51,6 +55,12 @@ void Draw() {
     cout << endl;
 
     cout << "Score: " << score << endl;
+
+    if (score == 100){
+        cout << "Nice, Keep Going!!!" << endl;
+    }
+
+    
 }
 
 void Input() {
@@ -103,13 +113,15 @@ void Logic() {
     }
 }
 
+
+
 int main() {
     Setup();
     while (!gameOver) {
         Draw();
         Input();
         Logic();
-        Sleep(speedDelay); // Sleep for speedDelay milliseconds
+        Sleep(speedDelay); 
     }
     return 0;
 }
